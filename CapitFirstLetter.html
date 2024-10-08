@@ -43,10 +43,8 @@
         <div class="pt-2 content">
             <h1>Capitalized First Letter</h1>
             <div>
-                <label>First Name :</label>
+                <label>Enter Your Name :</label>
                 <input type="text" class="form-control" id="firstname" />
-                <label>First Name :</label>
-                <input type="text" class="form-control" id="lastname" />
 
             </div>
             <div class="mt-4 text-center">
@@ -64,25 +62,21 @@
     <script>
         function reset(){
             document.getElementById("firstname").value="";
-            document.getElementById("lastname").value="";
             document.getElementById("result").value="";
         }
-        function CapitFirstLetter(){
-        let fname = document.getElementById("firstname").value;
-        let lname = document.getElementById("lastname").value;
+        function CapitFirstLetter(string){
+        let fullname = document.getElementById("firstname").value;
+        let fname = fullname.split(" ");
+        console.log(fname);
 
-        let firstName = fname.charAt(0).toUpperCase() + fname.slice(1);
-        let lastName = lname.charAt(0).toUpperCase() + lname.slice(1);
-        let captilizeName = `${firstName} ${lastName}`
-        if(firstName != "" && lastName == ""){
-            document.getElementById("result").value = "Enter Last Name";
-        }
-        else if(lastName != "" && firstName == ""){
-            document.getElementById("result").value = "Enter First Name";
-        }
-        else{
-            let res = document.getElementById("result");
-            res.value = captilizeName
+        let firstName = captilizeName(fname[0]);
+        console.log(typeof firstName);
+        let lastName = captilizeName(fname[fname.length - 1]);
+        console.log(lastName);
+        let result = document.getElementById("result");
+        result.value = `${firstName} ${lastName}`
+        function captilizeName(string){
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
         }
     </script>
