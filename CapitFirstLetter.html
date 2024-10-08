@@ -69,6 +69,10 @@
         let fname = fullname.split(" ");
         console.log(fname);
 
+        if(fname.length<2){
+            alert("Please Enter Full Name")
+            return
+        }
         let firstName = captilizeName(fname[0]);
         console.log(typeof firstName);
         let lastName = captilizeName(fname[fname.length - 1]);
