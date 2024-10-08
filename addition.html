@@ -16,8 +16,15 @@
         .maincontainer {
             width: 50%;
             border-radius: 10px;
-            background-color: #2c3e50;
+            background-color: #2e5275bf;
         }
+        .back{
+            height: 100vh;
+                background-image: url(Additon.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         .content {
             width: 90%;
             margin: auto;
@@ -31,7 +38,7 @@
         }
     </style>
 </head>
-<body style="background-color: #95afc0">
+<body class="back">
     <div class="m-auto mt-5 shadow-lg maincontainer">
         <div class="pt-2 content">
             <h1>Addition</h1>
@@ -65,13 +72,8 @@
             let res = document.getElementById('result');
             let num3 = (num1 + num2).toFixed(2);
 
-            // if (num1 === "" && num2 === "") {
-            //     document.getElementById("result").value = "Please enter a number";
-            // } else if (num1 !== "" && num2 === "") {
-            //     document.getElementById("result").value = "Please enter a second number.";
-            // } else {
-            //     document.getElementById("result").value = num3;
-            // }
+            let float = parseFloat(num3)
+            
             if(num1 == '' && num2 == ''){
                 
                 res.value = 'Enter a number'
