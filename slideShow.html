@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        main {
+            width: 60%;
+            height: 400px;
+            margin: auto;
+            margin-top: 80px;
+            box-shadow: 0px 0px 3px grey;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            transition: transform 1s;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10;
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: gray;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .active {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <img src="image-1.jpg" alt="" class="slide">
+    <img src="image-2.jpg" alt="" class="slide">
+    <img src="image-3.jpg" alt="" class="slide">
+    <img src="image-4.jpg" alt="" class="slide">
+
+    <button class="arrow left" onclick="goPrev()">&#10094;</button>
+    <button class="arrow right" onclick="goNext()">&#10095;</button>
+</main>
+
+<div class="dots"></div>
+
+<script>
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.querySelector(".dots");
+    let counter = 0;
+
+    slides.forEach((slide, index) => {
+        slide.style.left = `${index * 100}%`;
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        dot.addEventListener("click", () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    const updateDots = () => {
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === counter);
+        });
+    };
+
+    const goPrev = () => {
+        counter = (counter === 0) ? slides.length - 1 : counter - 1;
+        slideimg();
+    };
+
+    const goNext = () => {
+        counter = (counter === slides.length - 1) ? 0 : counter + 1;
+        slideimg();
+    };
+
+    const goToSlide = (index) => {
+        counter = index;
+        slideimg();
+    };
+
+    const slideimg = () => {
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(-${counter * 100}%)`;
+        });
+        updateDots();
+    };
+
+    updateDots();
+</script>
+</body>
+</html>
